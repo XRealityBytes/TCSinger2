@@ -6,7 +6,7 @@ PyTorch Implementation of [TCSinger 2 (ACL 2025)](): Customizable Multilingual Z
 
 [![GitHub Stars](https://img.shields.io/github/stars/AaronZ345/TCSinger2?style=social)](https://github.com/AaronZ345/TCSinger2)
 
-We will provide our implementation in this repository in two months.
+We will provide our implementation in this repository in about two months.
 
 Visit our [demo page](https://aaronz345.github.io/TCSinger2Demo/) for audio samples.
 
