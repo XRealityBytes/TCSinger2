@@ -2,7 +2,7 @@
 
 #### Yu Zhang, Wenxiang Guo, Changhao Pan, Dongyu Yao, Zhiyuan Zhu, Ziyue Jiang, Yuhan Wang, Tao Jin, Zhou Zhao | Zhejiang University
 
-PyTorch Implementation of [TCSinger 2 (ACL 2025)](): Customizable Multilingual Zero-shot Singing Voice Synthesis.
+PyTorch Implementation of [TCSinger 2 (ACL 2025)](https://arxiv.org/abs/2505.14910): Customizable Multilingual Zero-shot Singing Voice Synthesis.
 
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2505.14910)
 [![GitHub Stars](https://img.shields.io/github/stars/AaronZ345/TCSinger2?style=social)](https://github.com/AaronZ345/TCSinger2)
