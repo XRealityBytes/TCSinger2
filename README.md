@@ -4,6 +4,7 @@
 
 PyTorch Implementation of [TCSinger 2 (ACL 2025)](): Customizable Multilingual Zero-shot Singing Voice Synthesis.
 
+[![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2505.14910)
 [![GitHub Stars](https://img.shields.io/github/stars/AaronZ345/TCSinger2?style=social)](https://github.com/AaronZ345/TCSinger2)
 
 We will provide our implementation in this repository in about two months.
