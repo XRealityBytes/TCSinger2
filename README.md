@@ -101,8 +101,8 @@ python scripts/test_sing.py
 
 ## Acknowledgements
 Our implementation builds upon code from:  
-- **[Make-An-Audio-3](https://github.com/Text-to-Audio/Make-An-Audio-3)**  
-- **[TCSinger](https://github.com/AaronZ345/TCSinger)**  
+[Make-An-Audio-3](https://github.com/Text-to-Audio/Make-An-Audio-3) 
+[TCSinger](https://github.com/AaronZ345/TCSinger)
 
 (See individual files for detailed attributions.)
 
