@@ -25,7 +25,7 @@ Visit our [demo page](https://aaronz345.github.io/TCSinger2Demo/) for audio samp
 ## Quick Start
 We provide an example of how you can generate high-fidelity samples using TCSinger 2.
 
-To try on your own dataset, simply clone this repo on your local machine with NVIDIA GPU + CUDA cuDNN and follow the instructions below.
+To try on your own dataset, clone this repo on your local machine with NVIDIA GPU + CUDA cuDNN and follow the instructions below.
 
 ### Dependencies
 
@@ -50,8 +50,9 @@ You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` enviro
 1. Collect your own singing dataset, e.g., including [GTSinger](https://github.com/AaronZ345/GTSinger), and feel free to add extra data annotated with alignment tools, like [STARS](https://github.com/gwx314/STARS).  
 2. Place `metadata.json` (fields: `ph`, `word`, `item_name`, `ph_durs`, `wav_fn`, `singer`, `ep_pitches`, `ep_notedurs`, `ep_types`, `emotion`, `singing_method`, `technique`) and `phone_set.json` (complete phoneme list) in the desired folder and update the paths in `preprocess/preprocess.py`.  (*A reference `metadata.json` is provided in **GTSinger***.) 
 Please present the `singer` attribute as a description specifying the performer’s gender and vocal range, and render the `technique` attribute either as a concise text listing of skills or as a natural-language account that conveys their sequential order.
-3. Extract F0 for each `.wav`, save as `*_f0.npy`, e.g. with **[RMVPE](https://github.com/Dream-High/RMVPE)**.  
-4. Preprocess the dataset:
+3. Extract F0 for each `.wav`, save as `*_f0.npy`, e.g. with **[RMVPE](https://github.com/Dream-High/RMVPE)**.
+4. Download [HIFI-GAN](https://drive.google.com/drive/folders/1ve9cm_Yn3CQWSqkzMuRL33Uj1BNh51lR?usp=drive_link) as the vocoder in `useful_ckpts/hifigan` and [FLAN-T5](https://huggingface.co/google/flan-t5-large) in `useful_ckpts/flan-t5-large`.
+5. Preprocess the dataset:
 
 ```bash
 export PYTHONPATH=.
@@ -60,13 +61,13 @@ python preprocess/preprocess.py
 
 *Tip: You may also convert your dataset directly to a `.csv` instead of using `metadata.json`.*
 
-5. Compute mel-spectrograms:
+6. Compute mel-spectrograms:
 
 ```bash
 python preprocess/mel_spec_48k.py --tsv_path data/new/data.tsv --num_gpus 1 --max_duration 20
 ```
 
-6. Post-process:
+7. Post-process:
 
 ```bash
 python preprocess/postprocess_data.py
@@ -104,6 +105,7 @@ python scripts/test_sing.py
 This implementation uses parts of the code from the following Github repos:
 [Make-An-Audio-3](https://github.com/Text-to-Audio/Make-An-Audio-3),
 [TCSinger](https://github.com/AaronZ345/TCSinger)
+[Lumina-T2X](https://github.com/Alpha-VLLM/Lumina-T2X)
 as described in our code.
 
 ## Citations ##
