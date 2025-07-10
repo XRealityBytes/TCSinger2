@@ -7,8 +7,6 @@ PyTorch implementation of **[TCSinger 2 (ACL 2025)](https://arxiv.org/abs/2505.1
 [![arXiv](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://arxiv.org/abs/2505.14910)
 [![GitHub Stars](https://img.shields.io/github/stars/AaronZ345/TCSinger2?style=social)](https://github.com/AaronZ345/TCSinger2)
 
-> **Note:** The full source code will be released in this repository soon.
-
 Visit our [demo page](https://aaronz345.github.io/TCSinger2Demo/) for audio samples.
 
 ## News
