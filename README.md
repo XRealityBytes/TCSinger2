@@ -13,6 +13,7 @@ Visit our [demo page](https://aaronz345.github.io/TCSinger2Demo/) for audio samp
 
 ## News
 - 2025.07: We released the code of TCSinger 2!
+- 2025.07: We realeased the code of [STARS](https://github.com/gwx314/STARS)!
 - 2025.05: TCSinger 2 is accepted by ACL 2025!
 
 ## Key Features
@@ -46,7 +47,7 @@ You can specify which GPUs to use by setting the `CUDA_DEVICES_AVAILABLE` enviro
 
 ### Data Preparation 
 
-1. Collect your own singing dataset, e.g., including [GTSinger](https://github.com/AaronZ345/GTSinger), and feel free to add extra data annotated with alignment tools.  
+1. Collect your own singing dataset, e.g., including [GTSinger](https://github.com/AaronZ345/GTSinger), and feel free to add extra data annotated with alignment tools, like [STARS](https://github.com/gwx314/STARS).  
 2. Place `metadata.json` (fields: `ph`, `word`, `item_name`, `ph_durs`, `wav_fn`, `singer`, `ep_pitches`, `ep_notedurs`, `ep_types`, `emotion`, `singing_method`, `technique`) and `phone_set.json` (complete phoneme list) in the desired folder and update the paths in `preprocess/preprocess.py`.  (*A reference `metadata.json` is provided in **GTSinger***.) 
 Please present the `singer` attribute as a description specifying the performer’s gender and vocal range, and render the `technique` attribute either as a concise text listing of skills or as a natural-language account that conveys their sequential order.
 3. Extract F0 for each `.wav`, save as `*_f0.npy`, e.g. with **[RMVPE](https://github.com/Dream-High/RMVPE)**.  
@@ -73,7 +74,7 @@ python preprocess/postprocess_data.py
 
 ### Training TCSinger 2
 
-1. Train the VAE module
+1. Train the VAE module and duration predictor
 ```bash
 python main.py --base configs/ae_singing.yaml -t --gpus 0,1,2,3,4,5,6,7
 ```
