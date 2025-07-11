@@ -743,45 +743,6 @@ class InferDataset(Dataset):
         ph2id = {ph: idx for idx, ph in enumerate(ph_set)}
         ph = [ph2id[p] for p in ph]
 
-        # ph_array = np.full((spec_len,), 475, dtype=np.int32)
-        # ep_pitches_array = np.full((spec_len,), 99, dtype=np.int32)
-
-        # for i in range(spec_len):
-        #     p = mel2ph[i] - 1
-        #     if p >= 0:
-        #         ph_array[i] = ph[p]       
-        #         ep_pitches_array[i] = ep_pitches[p]
-
-        # # 对mel2ph中连续相同ph的片段长度超过24的进行mask
-        # ph_val = mel2ph[0] if spec_len > 0 else -1
-        # start_idx = 0
-        # length = 1
-        # i = 1
-        # while i < spec_len:
-        #     if mel2ph[i] == ph_val and ph_val != 475:
-        #         length += 1
-        #     else:
-        #         if length > 24:
-        #             seg_start = np.random.randint(start_idx, start_idx + length - 24 + 1)
-        #             seg_end = seg_start + 24
-        #             # mask前后多余的部分
-        #             for mask_range in [range(start_idx, seg_start), range(seg_end, start_idx + length)]:
-        #                 mel2ph[mask_range] = 0
-        #                 ph_array[mask_range] = 475
-        #                 ep_pitches_array[mask_range] = 99
-        #         ph_val = mel2ph[i]
-        #         start_idx = i
-        #         length = 1
-        #     i += 1
-        # # 最后一个连续段处理
-        # if length > 24:
-        #     seg_start = np.random.randint(start_idx, start_idx + length - 24 + 1)
-        #     seg_end = seg_start + 24
-        #     for mask_range in [range(start_idx, seg_start), range(seg_end, start_idx + length)]:
-        #         mel2ph[mask_range] = 0
-        #         ph_array[mask_range] = 475
-        #         ep_pitches_array[mask_range] = 99
-
         language_id = self.language_to_id[data['language']]
 
         caption=''
@@ -859,9 +820,6 @@ def gen_song(rank, args):
         item_name = item['name']
 
         f0 = item['f0'].to(device)
-        # ep_pitches = item['ep_pitches'].to(device)
-        # ph = item['ph'].to(device)
-        # mel2ph = item['mel2ph'].to(device)
         ph_seq        = item['ph_seq'].to(device)        # [N_ph]
         ep_pitch_seq  = item['ep_pitch_seq'].to(device)  # [N_ph]
         ep_notedurs = item['ep_notedurs'].to(device)  # [N_ph]
@@ -910,21 +868,21 @@ def gen_song(rank, args):
             if mel2ph[i] == ph_val and ph_val != 0:
                 length += 1
             else:
-                # if length > 16:
-                #     seg_start = torch.randint(start_idx, start_idx + length - 15, (1,)).item()
-                #     seg_end   = seg_start + 16
-                #     for rng in [range(start_idx, seg_start), range(seg_end, start_idx + length)]:
-                #         mel2ph[rng]       = 0
-                #         ph_array[rng]     = 475
-                #         ep_pitch_array[rng] = 99
+                if length > 16:
+                    seg_start = torch.randint(start_idx, start_idx + length - 15, (1,)).item()
+                    seg_end   = seg_start + 16
+                    for rng in [range(start_idx, seg_start), range(seg_end, start_idx + length)]:
+                        mel2ph[rng]       = 0
+                        ph_array[rng]     = 475
+                        ep_pitch_array[rng] = 99
                 ph_val, start_idx, length = mel2ph[i], i, 1
-        # if length > 16:
-        #     seg_start = torch.randint(start_idx, start_idx + length - 15, (1,)).item()
-        #     seg_end   = seg_start + 16
-        #     for rng in [range(start_idx, seg_start), range(seg_end, start_idx + length)]:
-        #         mel2ph[rng]       = 0
-        #         ph_array[rng]     = 475
-        #         ep_pitch_array[rng] = 99
+        if length > 16:
+            seg_start = torch.randint(start_idx, start_idx + length - 15, (1,)).item()
+            seg_end   = seg_start + 16
+            for rng in [range(start_idx, seg_start), range(seg_end, start_idx + length)]:
+                mel2ph[rng]       = 0
+                ph_array[rng]     = 475
+                ep_pitch_array[rng] = 99
 
         # ---------- Step 6: 整回 batch，用原字段名，后续代码基本不用动 ----------
         item['ph']        = ph= ph_array.unsqueeze(0).long()        # [1, T]
