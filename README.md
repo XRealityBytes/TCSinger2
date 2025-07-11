@@ -21,7 +21,7 @@ Visit our [demo page](https://aaronz345.github.io/TCSinger2Demo/) for audio samp
 - Experimental results show that TCSinger 2 outperforms baseline models in subjective and objective metrics across multiple tasks: **zero-shot style transfer, multi-level style control, cross-lingual style transfer, and speech-to-singing style transfer**.
 
 ## Quick Start
-We provide an example of how you can generate high-fidelity samples using TCSinger 2.
+We provide an example of how you can train your own model and infer with TCSinger 2.
 
 To try on your own dataset, clone this repo on your local machine with NVIDIA GPU + CUDA cuDNN and follow the instructions below.
 
