@@ -6,7 +6,6 @@ from importlib_resources import files
 from ldm.modules.encoders.CLAP.utils import read_config_as_args
 from ldm.modules.encoders.CLAP.clap import TextEncoder
 from ldm.util import count_params
-from ldm.modules.encoders.caption_generator import CaptionGenerator2
 
 
 class AbstractEncoder(nn.Module):
@@ -232,3 +231,4 @@ class FrozenTextVocalEmbedder(AbstractEncoder):
 
     def encode(self, text):
         return self(text)
+
