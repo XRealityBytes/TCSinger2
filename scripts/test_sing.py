@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 from vocoder.hifigan import HifiGAN
 from ldm.models.diffusion.cfm1_audio_sampler import CFMSampler
 from ldm.util import instantiate_from_config
-from ldm.modules.encoders.caption_generator import CaptionGenerator2
 import random
 import pandas as pd
 from typing import Union
@@ -637,8 +636,6 @@ class InferDataset(Dataset):
         # Load all samples from the manifest
         samples = load_samples_from_tsv(manifest_path)
         self.items_dict = {sample['item_name']: sample for sample in samples}
-
-        self.caption_generator = CaptionGenerator2()
 
         self.mel_num = 80
         self.mel_downsample_rate = 2    # temporal downsample rate
