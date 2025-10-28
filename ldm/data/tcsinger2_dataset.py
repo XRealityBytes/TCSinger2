@@ -7,7 +7,6 @@ import pandas as pd
 from ldm.data.joinaudiodataset_anylen import *
 import glob
 import math
-from ldm.modules.encoders.caption_generator import CaptionGenerator2
 import ast
 import random
 
@@ -825,4 +824,5 @@ class DDPIndexBatchSampler(Sampler):    # 让长度相似的音频的indices合�
 
     def __len__(self) -> int:
         return len(self.batches)
+
 
